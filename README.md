@@ -111,19 +111,19 @@ This ensures a scalable and production-ready foundation.
 
 ### Workflow Studio Dashboard
 
-![Dashboard Input](screenshots/dashboard-input.png)
+![Dashboard Input](screenshots/dashboard.png)
 
 ---
 
 ### Multi-Agent Workflow Execution
 
-![Workflow Execution](screenshots/dashboard-workflow.png)
+![Workflow Execution](screenshots/workflow-execution.png)
 
 ---
 
 ### Structured Results Interface
 
-![Results Output](screenshots/results-output.png)
+![Results Output](screenshots/dashboard-results.png)
 
 ---
 
