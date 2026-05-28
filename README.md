@@ -10,7 +10,7 @@
 
 ## 🚀 Product Vision
 
-FlowMind AI is not a chatbot, a prompt wrapper, or a generic AI assistant. It is a premium **structured productivity automation system** and **workflow orchestration platform**. 
+FlowMind AI is not a chatbot, a prompt wrapper, or a generic AI assistant. It is a premium **operational execution engine** and **workflow orchestration platform**. 
 
 We believe the future of AI in the workplace isn't just about answering questions—it's about coordinating complex execution. We built FlowMind AI to bridge the massive gap between thinking, planning, and doing.
 
@@ -18,7 +18,7 @@ We believe the future of AI in the workplace isn't just about answering question
 
 Builders, founders, students, and professionals suffer from **execution overload**. 
 
-You don't need more unstructured text. You don't need another generic chat interface to read through. Current AI tools often exacerbate fragmented productivity systems by returning long walls of text that still require manual structuring, prioritizing, and planning before any real work can begin.
+You don't need more unstructured text. You don't need another generic chat interface to read through. Current AI tools often exacerbate fragmented operational systems by returning long walls of text that still require manual structuring, prioritizing, and planning before any real work can begin.
 
 ## 💡 The Solution
 
@@ -44,7 +44,7 @@ FlowMind AI utilizes a specialized multi-agent pipeline to ensure the highest-qu
 
 1. **Research Agent:** Extracts core constraints, dependencies, and objectives from raw, messy inputs.
 2. **Planner Agent:** Structures the extracted data into an actionable execution timeline.
-3. **Productivity Agent:** Manages the presentation and formatting of the operational roadmap.
+3. **Operations Agent:** Manages the presentation and formatting of the operational roadmap (re-branded in UI as Productivity Agent).
 4. **Summary Agent:** Distills complex workflows into immediate, high-level insights.
 5. **Workflow Engine:** Orchestrates the seamless handoff of state, context, and JSON payloads between all agents in the pipeline.
 
