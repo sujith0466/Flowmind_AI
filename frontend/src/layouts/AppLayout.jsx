@@ -29,7 +29,7 @@ export default function AppLayout() {
           <Navbar onMenuClick={() => setSidebarOpen(true)} />
           
           <main className="flex-1 overflow-y-auto overflow-x-hidden">
-            <div className={`mx-auto w-full px-6 py-8 sm:px-8 md:py-12 ${isDashboard ? 'max-w-[1200px]' : 'max-w-[900px]'}`}>
+            <div className={`mx-auto w-full px-4 py-6 sm:px-8 md:py-12 ${isDashboard ? 'max-w-[1200px]' : 'max-w-[900px]'}`}>
               <Outlet />
             </div>
           </main>

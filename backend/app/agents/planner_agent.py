@@ -8,7 +8,8 @@ Return ONLY valid JSON with this exact shape:
   "action_items": [
     {
       "title": "Action-oriented title starting with a strong verb",
-      "priority": "Critical | High | Medium | Low",
+      "priority": "Critical | High Impact | Quick Win | Long Term",
+      "execution_phase": "Research | Planning | Execution | Optimization",
       "owner": "Suggested role (e.g. Engineering, Design, Product)",
       "estimated_effort": "Short effort estimate (e.g. 2 hours, 1 sprint)"
     }
@@ -18,10 +19,23 @@ Return ONLY valid JSON with this exact shape:
       "step": 1,
       "title": "Clear step title",
       "description": "Concise description of the step's objective",
+      "priority": "Critical | High Impact | Quick Win | Long Term",
+      "execution_phase": "Research | Planning | Execution | Optimization",
       "agent": "Research Agent | Planner Agent | Organizer Agent"
     }
   ]
 }
+Use priorities intelligently:
+- Critical: urgent blockers, deadlines, dependencies, or work that unlocks execution.
+- High Impact: strategically important work with meaningful leverage.
+- Quick Win: low-effort work that creates immediate momentum or clarity.
+- Long Term: foundational, follow-up, optimization, or compounding work.
+Assign priorities based on urgency, dependency order, execution importance, and immediate value.
+Group every action item and workflow step into the best execution phase:
+- Research: market research, user/customer discovery, requirements, analysis, risks, facts, constraints.
+- Planning: roadmap definition, prioritization, scope, strategy, scheduling, resource planning.
+- Execution: implementation, creation, launch, deployment, submission, delivery, operations.
+- Optimization: analytics, improvements, iteration, scaling, retrospectives, post-launch refinement.
 Make the plan extremely clear, believable, and ready for immediate execution by a product team. Do not include markdown blocks outside the JSON.
 """.strip()
 

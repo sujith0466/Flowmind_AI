@@ -36,9 +36,16 @@ class GeminiService:
                 status_code=502,
             ) from exc
         except Exception as exc:
+            reason = str(exc).lower()
+            if "429" in reason or "quota" in reason or "rate" in reason:
+                raise ApiError(
+                    "ai_rate_limited",
+                    "The AI service is temporarily rate limited. Please wait a moment and try again.",
+                    status_code=503,
+                ) from exc
+
             raise ApiError(
                 "gemini_request_failed",
                 "The Gemini API request failed while generating the workflow.",
                 status_code=502,
-                details={"reason": str(exc)},
             ) from exc

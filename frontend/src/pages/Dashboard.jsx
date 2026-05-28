@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
-import { generateWorkflow } from '../api/workflow.js';
+import { generateWorkflow, getApiErrorMessage } from '../api/workflow.js';
 import { fadeUp, staggerContainer } from '../animations/variants.js';
 import { supabase } from '../lib/supabase.js';
 
@@ -11,7 +11,7 @@ import WorkflowResultsPanel from '../components/workflow/WorkflowResultsPanel.js
 import AgentGrid from '../components/dashboard/AgentGrid.jsx';
 import LiveTerminal from '../components/dashboard/LiveTerminal.jsx';
 
-const loadingPhases = ['analyzing', 'planning', 'organizing'];
+const loadingPhases = ['researching', 'planning', 'prioritizing', 'summarizing', 'structuring'];
 
 export default function Dashboard() {
   const [notes, setNotes] = useState('');
@@ -23,54 +23,62 @@ export default function Dashboard() {
   useEffect(() => {
     if (!isLoading) return;
 
-    setPhase('analyzing');
+    setPhase('researching');
     let index = 0;
     const timer = setInterval(() => {
       index = Math.min(index + 1, loadingPhases.length - 1);
       setPhase(loadingPhases[index]);
-    }, 1200);
+    }, 1500);
 
     return () => clearInterval(timer);
   }, [isLoading]);
 
-  async function handleGenerateWorkflow(e) {
-    e.preventDefault();
-    if (!notes.trim() || isLoading) return;
+  async function handleGenerateWorkflow(e, overridePrompt = null) {
+    if (e && e.preventDefault) e.preventDefault();
+    const promptToUse = overridePrompt || notes;
+    if (!promptToUse.trim() || isLoading) return;
+
+    if (overridePrompt) setNotes(overridePrompt);
 
     setIsLoading(true);
     setError('');
     setWorkflow(null);
 
     try {
-      const data = await generateWorkflow(notes.trim());
+      const sourceText = promptToUse.trim();
+      const data = await generateWorkflow(sourceText);
       setWorkflow(data);
       setPhase('completed');
       toast.success('Workflow generated successfully.');
       
       // Persist to Supabase if client is configured
       if (supabase) {
-        const { data: sessionData } = await supabase.auth.getSession();
-        const userId = sessionData?.session?.user?.id;
-        
-        if (userId) {
-          const { error: dbError } = await supabase.from('workflows').insert({
-            user_id: userId,
-            title: `Workflow: ${notes.substring(0, 30)}...`,
-            raw_input: notes,
-            data: data
-          });
+        try {
+          const { data: sessionData } = await supabase.auth.getSession();
+          const userId = sessionData?.session?.user?.id;
           
-          if (dbError) {
-            console.error('Failed to save to Supabase:', dbError);
-            toast.error('Generated, but failed to save to history.');
+          if (userId) {
+            const { error: dbError } = await supabase.from('workflows').insert({
+              user_id: userId,
+              title: `Workflow: ${sourceText.substring(0, 30)}...`,
+              raw_input: sourceText,
+              data: data
+            });
+            
+            if (dbError) {
+              toast.error('Generated, but could not save to history.');
+            }
           }
+        } catch {
+          toast.error('Generated, but could not save to history.');
         }
       }
       
     } catch (err) {
-      setError('Failed to generate workflow.');
+      const message = getApiErrorMessage(err);
+      setError(message);
       setPhase('idle');
-      toast.error('Failed to generate workflow.');
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
@@ -79,9 +87,18 @@ export default function Dashboard() {
   return (
     <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="w-full">
 
-      <motion.div variants={fadeUp} className="mb-10 text-center sm:text-left">
-        <h1 className="font-display text-4xl font-bold tracking-tight text-white">Startup Workflow Studio</h1>
-        <p className="mt-3 text-[16px] text-white/50">Transform raw notes into an execution-ready roadmap with your AI agent team.</p>
+      <motion.div variants={fadeUp} className="mb-12 text-center sm:text-left">
+        <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-widest text-cyan-200">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
+          </span>
+          System Online
+        </div>
+        <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">Startup Workflow Studio</h1>
+        <p className="mt-4 text-[16px] leading-relaxed text-slate-400 max-w-[600px] mx-auto sm:mx-0">
+          Transform raw notes, meeting transcripts, or vague ideas into an execution-ready roadmap. Orchestrated instantly by your dedicated AI multi-agent system.
+        </p>
       </motion.div>
 
       <div className="mx-auto max-w-[800px] sm:mx-0 sm:max-w-none">
@@ -114,7 +131,7 @@ export default function Dashboard() {
             className="mt-16 grid gap-10 lg:grid-cols-[1fr_2fr]"
           >
             <div>
-              <WorkflowTimeline phase={phase} workflowSteps={workflow?.workflow_steps || []} />
+              <WorkflowTimeline phase={phase} workflow={workflow} workflowSteps={workflow?.workflow_steps || []} />
             </div>
             <div>
               <WorkflowResultsPanel workflow={workflow} />

@@ -40,7 +40,7 @@ def _as_csv(value: str | None, default: list[str]) -> list[str]:
 
 @dataclass(frozen=True)
 class Settings:
-    env: str = os.getenv("FLASK_ENV", "development")
+    env: str = os.getenv("FLASK_ENV", "production")
     debug: bool = _as_bool(os.getenv("FLASK_DEBUG"), default=False)
     host: str = os.getenv("BACKEND_HOST", "0.0.0.0")
     port: int = _as_int(os.getenv("PORT") or os.getenv("BACKEND_PORT"), 5000)
@@ -50,6 +50,7 @@ class Settings:
     gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
     gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     gemini_temperature: float = _as_float(os.getenv("GEMINI_TEMPERATURE"), 0.2)
+    max_workflow_input_chars: int = _as_int(os.getenv("MAX_WORKFLOW_INPUT_CHARS"), 12000)
 
     def __post_init__(self):
         default_origins = [

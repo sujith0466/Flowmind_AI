@@ -10,29 +10,28 @@ export default function History() {
 
   useEffect(() => {
     async function fetchHistory() {
-      if (!supabase) {
-        setLoading(false);
-        return;
-      }
-      
-      const { data: sessionData } = await supabase.auth.getSession();
-      const userId = sessionData?.session?.user?.id;
-      
-      if (!userId) {
-        setLoading(false);
-        return;
-      }
+      try {
+        if (!supabase) return;
+        
+        const { data: sessionData } = await supabase.auth.getSession();
+        const userId = sessionData?.session?.user?.id;
+        
+        if (!userId) return;
 
-      const { data, error } = await supabase
-        .from('workflows')
-        .select('*')
-        .eq('user_id', userId)
-        .order('created_at', { ascending: false });
+        const { data, error } = await supabase
+          .from('workflows')
+          .select('*')
+          .eq('user_id', userId)
+          .order('created_at', { ascending: false });
 
-      if (!error && data) {
-        setHistory(data);
+        if (!error && data) {
+          setHistory(data);
+        }
+      } catch {
+        setHistory([]);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
 
     fetchHistory();

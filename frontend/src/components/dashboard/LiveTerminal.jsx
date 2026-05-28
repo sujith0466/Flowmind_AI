@@ -4,23 +4,35 @@ import { Terminal } from 'lucide-react';
 import { fadeUp } from '../../animations/variants.js';
 
 const logsData = {
-  analyzing: [
-    "[System] Initializing context extraction engine...",
+  researching: [
+    "[System] Allocating context extraction nodes...",
     "[Research Agent] Parsing raw input constraints...",
-    "[Research Agent] Normalizing text into semantic blocks...",
-    "[Research Agent] Identifying core objectives..."
+    "[Research Agent] Building semantic dependency graph...",
+    "[Research Agent] Core objectives isolated."
   ],
   planning: [
-    "[System] Handoff to Planner Agent.",
-    "[Planner Agent] Mapping dependencies and prerequisites...",
-    "[Planner Agent] Generating priority matrix...",
-    "[Planner Agent] Formatting task list..."
+    "[System] Context verified. Handoff to Planner Agent.",
+    "[Planner Agent] Constructing execution roadmap...",
+    "[Planner Agent] Mapping node prerequisites...",
+    "[Planner Agent] Roadmap finalized."
   ],
-  organizing: [
-    "[System] Handoff to Organizer Agent.",
-    "[Organizer Agent] Compiling structured document...",
-    "[Organizer Agent] Validating schema constraints...",
-    "[Organizer Agent] Finalizing execution plan..."
+  prioritizing: [
+    "[System] Roadmap active. Handoff to Productivity Agent.",
+    "[Productivity Agent] Calculating workload distribution...",
+    "[Productivity Agent] Balancing phase complexity...",
+    "[Productivity Agent] Priority vectors assigned."
+  ],
+  summarizing: [
+    "[System] Priorities locked. Handoff to Summary Agent.",
+    "[Summary Agent] Organizing output schemas...",
+    "[Summary Agent] Validating against execution constraints...",
+    "[Summary Agent] Metrics compilation complete."
+  ],
+  structuring: [
+    "[System] Final handoff to Workflow Engine.",
+    "[Workflow Engine] Assembling execution pipeline...",
+    "[Workflow Engine] Optimizing final parameters...",
+    "[Workflow Engine] System prompt finalized. Generating..."
   ]
 };
 
@@ -30,7 +42,7 @@ export default function LiveTerminal({ phase }) {
   useEffect(() => {
     if (phase === 'idle' || phase === 'completed') return;
 
-    const currentPhaseLogs = logsData[phase] || logsData.analyzing;
+    const currentPhaseLogs = logsData[phase] || logsData.researching;
     let index = 0;
     
     // Clear previous logs on phase change, or append? Let's just append for realism.
@@ -40,16 +52,16 @@ export default function LiveTerminal({ phase }) {
         setLogs(prev => [...prev.slice(-4), newLine]); // Keep last 5 logs
         index++;
       }
-    }, 400);
+    }, 300);
 
     return () => clearInterval(interval);
   }, [phase]);
 
   return (
-    <motion.div variants={fadeUp} className="mt-6 w-full max-w-[800px] rounded-xl border border-sky-200/15 bg-[#0c152d]/85 p-4 font-mono text-[12px] shadow-[0_10px_30px_rgba(8,16,40,0.45)]">
-      <div className="mb-3 flex items-center gap-2 border-b border-sky-200/10 pb-2 text-slate-300/70">
-        <Terminal size={14} className="text-cyan-200" />
-        <span className="uppercase tracking-widest text-[10px]">Live Execution Terminal</span>
+    <motion.div variants={fadeUp} className="mt-6 w-full max-w-[800px] rounded-2xl border border-sky-300/10 bg-[#070c1a]/95 p-5 font-mono text-[12px] shadow-[0_12px_40px_rgba(8,16,40,0.6)] ring-1 ring-white/[0.02] backdrop-blur-md">
+      <div className="mb-4 flex items-center gap-2.5 border-b border-sky-200/10 pb-3 text-slate-300/70">
+        <Terminal size={14} className="text-cyan-400" />
+        <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Live Execution Terminal</span>
       </div>
       
       <div className="min-h-[100px] flex flex-col justify-end space-y-1">

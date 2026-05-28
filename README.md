@@ -1,4 +1,4 @@
-# FlowMind AI — AI-Powered Multi-Agent Productivity Operating System
+﻿# FlowMind AI — AI-Powered Multi-Agent Productivity Operating System
 
 FlowMind AI is a premium, AI-native multi-agent productivity operating system built for the **OpenAI x Outskill AI Builders Hackathon**.
 

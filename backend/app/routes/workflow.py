@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 
+from app.config.settings import settings
 from app.services.workflow_service import WorkflowService
 from app.utils.errors import ApiError
 
@@ -16,6 +17,13 @@ def generate_workflow():
             "validation_error",
             "Please provide a non-empty `text` field.",
             status_code=400,
+        )
+
+    if len(text) > settings.max_workflow_input_chars:
+        raise ApiError(
+            "input_too_large",
+            f"Please keep workflow input under {settings.max_workflow_input_chars} characters.",
+            status_code=413,
         )
 
     workflow = WorkflowService().generate(text)
