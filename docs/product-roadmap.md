@@ -1,6 +1,6 @@
-﻿# Product Roadmap
+# Product Roadmap
 
-FlowMind AI is currently in MVP execution mode for the OpenAI x Outskill AI Builders Hackathon. The priority is a Top 5-quality product demo: one useful workflow, polished deeply, and presented with clarity.
+FlowMind AI is currently in MVP execution mode for the OpenAI x Outskill AI Builders Hackathon. The priority is a startup-grade quality product demo: one useful workflow, polished deeply, and presented with clarity.
 
 ## Completed Milestones
 

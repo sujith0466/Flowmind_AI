@@ -23,6 +23,15 @@ frontend/dist/
 __pycache__/
 *.py[cod]
 
+# Temporary QA and Scratch Files
+/scratch/
+temp/
+tmp/
+debug/
+*.qa.json
+*.temp.md
+*.scratch.txt
+
 # OS and editor files
 .DS_Store
 Thumbs.db
