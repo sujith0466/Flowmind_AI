@@ -36,7 +36,7 @@ const stagger = {
 const navItems = [
   { label: 'Product', href: '#hero' },
   { label: 'Agents', href: '#agents' },
-  { label: 'Workflow', href: '#workflow' },
+  { label: 'Execution', href: '#execution' },
 ];
 
 const agentNodes = [
@@ -57,7 +57,7 @@ const agentNodes = [
     delay: 0.22,
   },
   {
-    name: 'Workflow OS',
+    name: 'Execution OS',
     detail: 'Execution map',
     icon: Workflow,
     className: 'right-[8%] bottom-[26%]',
@@ -78,7 +78,7 @@ const executionRows = [
   { label: 'Parse source context', icon: FileText },
   { label: 'Extract constraints', icon: BrainCircuit },
   { label: 'Prioritize next actions', icon: CheckCircle2 },
-  { label: 'Render workflow roadmap', icon: Layers3 },
+  { label: 'Render execution roadmap', icon: Layers3 },
 ];
 
 function PageSection({ id, children, className = '' }) {
@@ -177,15 +177,15 @@ function HeroSection() {
         <motion.div variants={stagger} initial="hidden" animate="visible" className="flex w-full flex-col items-center">
         <motion.div variants={fadeUp} transition={{ duration: 0.65, ease }} className="mb-7 inline-flex max-w-full items-center gap-2 rounded-full bg-white/[0.055] px-3.5 py-2 text-xs font-semibold text-white/68 ring-1 ring-white/[0.09] backdrop-blur-lg">
           <span className="status-live h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300" />
-          Multi-agent productivity operating system
+          The AI Operating System
         </motion.div>
 
         <motion.h1 variants={fadeUp} transition={{ duration: 0.86, ease }} className="mx-auto max-w-[1120px] text-balance font-display text-[3.45rem] font-bold leading-[0.9] tracking-[-0.08em] text-white sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8.2rem]">
-          The calm way to orchestrate work with AI agents.
+          From Information to Execution.
         </motion.h1>
 
         <motion.p variants={fadeUp} transition={{ duration: 0.76, ease }} className="mx-auto mt-8 max-w-[690px] text-pretty text-lg leading-8 text-white/60 sm:text-xl sm:leading-9">
-          FlowMind AI turns loose notes into research, action plans, and workflow roadmaps through a cinematic multi-agent execution engine.
+          FlowMind AI is a Goal-to-Execution Intelligence Layer that turns loose notes into structured action plans through a cinematic multi-agent operating system.
         </motion.p>
 
         <motion.div variants={fadeUp} transition={{ duration: 0.72, ease }} className="mt-11 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row">
@@ -393,7 +393,7 @@ function AgentsShowcase() {
                 Specialized Agents
               </div>
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">Orchestrated Intelligence.</h2>
-              <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-white/50">Each workflow is routed through a dedicated multi-agent cluster, ensuring execution plans are researched, balanced, and operationally viable.</p>
+              <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-white/50">Every goal is routed through a dedicated multi-agent cluster, ensuring execution plans are researched, balanced, and operationally viable.</p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -431,15 +431,15 @@ function AgentsShowcase() {
   );
 }
 
-function WorkflowShowcase() {
+function ExecutionShowcase() {
   const roadmapSteps = [
     { label: 'Parse source context & define constraints', priority: 'Critical', color: 'red' },
     { label: 'Prioritize next actions & assign vectors', priority: 'High', color: 'yellow' },
-    { label: 'Generate execution pipeline roadmap', priority: 'Normal', color: 'emerald' },
+    { label: 'Generate structured action plans', priority: 'Normal', color: 'emerald' },
   ];
 
   return (
-    <PageSection id="workflow" className="pb-24 lg:pb-32">
+    <PageSection id="execution" className="pb-24 lg:pb-32">
       <div className="relative mx-auto w-full max-w-[1180px] min-w-0">
         <motion.div
           initial={{ opacity: 0, y: 34 }}
@@ -454,10 +454,10 @@ function WorkflowShowcase() {
             <div className="p-8 sm:p-12 lg:w-1/2 flex flex-col justify-center">
               <div className="inline-flex self-start items-center gap-2 rounded-full bg-white/[0.04] px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-white/50 ring-1 ring-white/[0.06] mb-4">
                 <Workflow size={12} className="text-violet-300" />
-                Execution Pipeline
+                Execution Platform
               </div>
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">Actionable Outputs.</h2>
-              <p className="mt-3 text-[15px] leading-relaxed text-white/50">From vague notes to a strategic execution console. The system synthesizes data into categorized pipelines, tracking critical priorities and clear timelines.</p>
+              <p className="mt-3 text-[15px] leading-relaxed text-white/50">From vague notes to a strategic execution console. The system synthesizes data into categorized action plans, tracking critical priorities and clear timelines.</p>
             </div>
             
             <div className="p-8 sm:p-12 lg:w-1/2 bg-white/[0.015] border-t lg:border-t-0 lg:border-l border-white/[0.05]">
@@ -496,7 +496,7 @@ export default function Landing() {
         <HeroSection />
         <OrchestrationVisual />
         <AgentsShowcase />
-        <WorkflowShowcase />
+        <ExecutionShowcase />
       </main>
     </div>
   );

@@ -261,12 +261,12 @@ class WorkflowEngine:
         self.research_agent = research_agent or ResearchAgent()
         self.planner_agent = planner_agent or PlannerAgent()
 
-    def run(self, text: str) -> dict:
-        research = self.research_agent.run(text)
+    def run(self, text: str, memory_context: str = "") -> dict:
+        research = self.research_agent.run(text, memory_context)
         if not isinstance(research, dict):
             research = {}
 
-        plan = self.planner_agent.run(text, research)
+        plan = self.planner_agent.run(text, research, memory_context)
         if not isinstance(plan, dict):
             plan = {}
 

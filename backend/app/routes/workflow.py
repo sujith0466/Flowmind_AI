@@ -11,6 +11,7 @@ workflow_bp = Blueprint("workflow", __name__)
 def generate_workflow():
     payload = request.get_json(silent=True) or {}
     text = str(payload.get("text", "")).strip()
+    memory_context = str(payload.get("memory_context", "")).strip()
 
     if not text:
         raise ApiError(
@@ -26,5 +27,5 @@ def generate_workflow():
             status_code=413,
         )
 
-    workflow = WorkflowService().generate(text)
+    workflow = WorkflowService().generate(text, memory_context)
     return jsonify({"success": True, "data": workflow})

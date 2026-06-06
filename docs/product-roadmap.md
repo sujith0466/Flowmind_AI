@@ -1,6 +1,6 @@
 # Product Roadmap
 
-FlowMind AI is currently in MVP execution mode for the OpenAI x Outskill AI Builders Hackathon. The priority is a startup-grade quality product demo: one useful workflow, polished deeply, and presented with clarity.
+FlowMind AI 2.0 is currently in final submission mode for the India Runs Ideathon 2026 — Track 1: The AI Systems Architect: Reimagining Work. The priority is a startup-grade quality product demo: one useful workflow, polished deeply, and presented with clarity.
 
 ## Completed Milestones
 
@@ -12,7 +12,7 @@ FlowMind AI is currently in MVP execution mode for the OpenAI x Outskill AI Buil
 - Sidebar, navbar, dashboard cards, landing page, history page, and results page created.
 - Flask backend foundation initialized.
 - Flask app factory, blueprint structure, config, and CORS added.
-- OpenAI integration layer created.
+- Google Gemini integration layer created.
 - Research Agent implemented.
 - Planner Agent implemented.
 - Workflow engine implemented.

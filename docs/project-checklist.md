@@ -1,6 +1,6 @@
-# FlowMind AI Master Checklist
+﻿# FlowMind AI Master Checklist
 
-FlowMind AI is an AI-powered multi-agent workflow automation platform built for the OpenAI x Outskill AI Builders Hackathon. This checklist tracks execution toward a startup-grade quality submission out of 1000 shortlisted builders.
+FlowMind AI is an AI-powered multi-agent workflow automation platform built for the India Runs Ideathon 2026 — Track 1: The AI Systems Architect: Reimagining Work. This checklist tracks execution toward a startup-grade quality submission out of 1000 shortlisted builders.
 
 ## Current MVP Status
 
@@ -24,7 +24,7 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 - [x] Configure Tailwind CSS and Framer Motion.
 - [x] Build premium dark dashboard shell.
 - [x] Initialize Flask backend foundation.
-- [x] Add OpenAI API integration layer.
+- [x] Add Gemini AI integration layer.
 - [x] Implement Research Agent.
 - [x] Implement Planner Agent.
 - [x] Implement workflow orchestration engine.
@@ -55,7 +55,7 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 - [x] Pick the primary demo persona: busy builder/founder/operator with messy notes.
 - [x] Decide the hero workflow for judging: raw notes to structured execution workflow.
 - [x] Write a crisp tagline for the landing page.
-- [x] Document the OpenAI x Outskill hackathon relevance.
+- [x] Document the India Runs Ideathon 2026 relevance.
 - [x] Clarify why multi-agent workflow automation is meaningfully better than a single chat response.
 
 ## Phase 2: Problem Definition
@@ -99,7 +99,7 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 - [x] Define frontend API client boundaries.
 - [x] Define Flask route boundaries.
 - [ ] Decide final Supabase scope for hackathon submission.
-- [x] Define OpenAI service responsibilities.
+- [x] Define Gemini AI service responsibilities.
 - [x] Define agent orchestration responsibilities.
 - [x] Keep prompt logic modular inside agent files for MVP speed.
 - [x] Add environment variable examples.
@@ -128,11 +128,11 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 - [x] Add API route group for workflow generation.
 - [x] Add health check route.
 - [x] Add request validation for missing text.
-- [x] Add OpenAI service wrapper.
+- [x] Add Gemini AI service wrapper.
 - [ ] Add Supabase service wrapper only if persistence enters scope.
 - [x] Add workflow orchestration service.
 - [x] Add structured JSON response format.
-- [x] Add error handling for missing input, missing OpenAI key, and AI failures.
+- [x] Add error handling for missing input, missing Gemini API key, and AI failures.
 - [x] Add backend README setup instructions.
 
 ## Phase 8: Supabase Auth And Database Setup
@@ -147,7 +147,7 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 - [x] Add basic persistence only after deployment and demo polish are stable.
 - [x] Document schema decisions if Supabase is added.
 
-## Phase 9: OpenAI Agent System
+## Phase 9: Gemini AI Agent System
 
 - [x] Define Research Agent.
 - [x] Define Planner Agent.
@@ -192,7 +192,7 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 - [ ] Add screenshots to `screenshots/submission/`.
 - [ ] Write the final demo script.
 - [ ] Practice the demo under the expected time limit.
-- [x] Highlight OpenAI-powered agent orchestration clearly in UI.
+- [x] Highlight Gemini-powered agent orchestration clearly in UI.
 - [ ] End the demo with business potential and next steps.
 
 ## Phase 13: Wednesday MVP Checkpoint Requirements
@@ -201,7 +201,7 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 - [x] Dashboard shell exists.
 - [x] Backend health route works.
 - [x] AI workflow route exists behind stable interface.
-- [x] At least one demo input can produce structured output when OpenAI key is configured.
+- [x] At least one demo input can produce structured output when Gemini API key is configured.
 - [x] Core UI can display summary, insights, tasks, and action plan.
 - [x] Supabase decision for MVP: defer auth and persistence.
 - [x] README and checklist updated with current status.
@@ -257,18 +257,18 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 - [x] API client: Axios configured with `VITE_API_URL` fallback.
 - [x] Backend: Flask app factory and blueprint structure.
 - [x] CORS: frontend origins configured for local development.
-- [x] OpenAI: centralized OpenAI service wrapper.
+- [x] Gemini: centralized Gemini AI service wrapper.
 - [x] Agents: Research Agent and Planner Agent.
 - [x] Workflow engine: sequential multi-agent orchestration.
 - [x] API response: unified structured JSON output.
-- [x] Error handling: validation, missing key, OpenAI failure, 404, 500.
+- [x] Error handling: validation, missing key, Gemini API failure, 404, 500.
 
 ## Implementation Notes
 
 - The MVP intentionally avoids auth, Supabase, file uploads, memory, and advanced workflows to protect velocity.
 - The dashboard is now the main demo surface because it shows the transformation from raw notes to structured execution.
 - The Productivity Agent is currently a frontend placeholder for future workflow automation expansion.
-- Real AI generation depends on `OPENAI_API_KEY` in `backend/.env`.
+- Real AI generation depends on `GEMINI_API_KEY` in `backend/.env`.
 - The highest leverage next work is polish, deployment, screenshots, and demo storytelling.
 
 ## Blockers
@@ -282,7 +282,7 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 
 ## Next Priorities
 
-1. Run live generation with a real OpenAI key and tune prompts if needed.
+1. Run live generation with a real Gemini API key and tune prompts if needed.
 2. Add cinematic UX polish to make the workflow feel more magical.
 3. Deploy backend to Render and frontend to Vercel.
 4. Capture screenshots and final demo assets.
@@ -296,7 +296,7 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 - [ ] Set frontend `VITE_API_URL` environment variable.
 - [ ] Configure frontend API base URL.
 - [ ] Create Render service for backend.
-- [ ] Set backend `OPENAI_API_KEY`, `OPENAI_MODEL`, `FRONTEND_URL`, and Flask env variables.
+- [ ] Set backend `GEMINI_API_KEY`, `GEMINI_MODEL`, `FRONTEND_URL`, and Flask env variables.
 - [ ] Configure CORS for production frontend URL.
 - [x] Add backend health check.
 - [x] Verify secrets are ignored by `.gitignore`.
@@ -318,11 +318,11 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 ## Judging Criteria Optimization
 
 - [x] Innovation: multi-agent workflow automation is visible and understandable.
-- [x] Technical execution: React frontend, Flask backend, OpenAI agents, and structured API are implemented.
+- [x] Technical execution: React frontend, Flask backend, Gemini-powered agents, and structured API are implemented.
 - [x] User experience: dashboard is simple, animated, and polished.
 - [x] Practicality: raw notes to action plan is a real productivity use case.
 - [x] Impact: product can expand into a workflow operating system.
-- [x] OpenAI usage: agents use OpenAI for reasoning and structured outputs.
+- [x] Gemini usage: agents use Gemini for reasoning and structured outputs.
 - [ ] Presentation: final pitch, demo video, and screenshots still need completion.
 
 ## Build-In-Public Checklist
@@ -377,7 +377,7 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 | Date | Goal | Completed | Blockers | Tomorrow |
 | --- | --- | --- | --- | --- |
 | Monday | Scaffold and planning | Project scaffold, docs, master checklist | None | Frontend foundation |
-| Tuesday | Core implementation | React frontend, Flask backend, OpenAI agents, API integration | Deployment pending | Polish and deployment |
+| Tuesday | Core implementation | React frontend, Flask backend, Gemini-powered agents, API integration | Deployment pending | Polish and deployment |
 | Wednesday | MVP checkpoint | Local end-to-end AI workflow ready | Need production URLs | Deploy and test |
 | Thursday | Polish and integrations | Pending | Need screenshots and story | Final UX pass |
 | Friday | Prototype launch | Pending | Need Vercel/Render | Gather feedback |
@@ -398,7 +398,7 @@ FlowMind AI is an AI-powered multi-agent workflow automation platform built for 
 
 ## Current Judged Strengths
 
-- [x] Technical execution: real frontend, backend, OpenAI API, and multi-agent orchestration are implemented.
+- [x] Technical execution: real frontend, backend, Gemini API, and multi-agent orchestration are implemented.
 - [x] Usefulness: converts messy notes into practical execution output.
 - [x] Polished UI foundation: dark startup-grade dashboard, glass cards, and smooth motion.
 - [x] Meaningful AI workflow: agents have distinct responsibilities.

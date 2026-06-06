@@ -1,6 +1,6 @@
 # Daily Build Log
 
-This log tracks build momentum for FlowMind AI during the OpenAI x Outskill AI Builders Hackathon.
+This log tracks build momentum for FlowMind AI 2.0 during the India Runs Ideathon 2026 — Track 1: The AI Systems Architect: Reimagining Work.
 
 ## Monday: Scaffold And Strategy
 
@@ -30,7 +30,7 @@ Completed:
 - Built landing, dashboard, workflow results, and history pages.
 - Initialized Flask backend.
 - Added Flask app factory, CORS, config, health route, and workflow route.
-- Added OpenAI integration wrapper.
+- Added Google Gemini integration wrapper.
 - Implemented Research Agent and Planner Agent.
 - Implemented workflow engine.
 - Connected frontend dashboard to backend API.
@@ -55,7 +55,7 @@ Completed:
 
 Next:
 
-- Test live OpenAI generation with multiple inputs.
+- Test live Gemini generation with multiple inputs.
 - Deploy backend and frontend.
 - Capture screenshots.
 - Prepare final demo narrative.

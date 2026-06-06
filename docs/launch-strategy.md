@@ -23,7 +23,7 @@ Information overload -> AI agent coordination -> execution clarity
 | Criteria | Current Evidence | Next Optimization |
 | --- | --- | --- |
 | Innovation | Multi-agent workflow automation with visible agent handoff | Make agent roles more explicit in demo narration. |
-| Technical execution | React, Flask, OpenAI, structured API, clean architecture | Deploy and show live end-to-end system. |
+| Technical execution | React, Flask, Gemini, structured API, clean architecture | Deploy and show live end-to-end system. |
 | UX and design | Premium dark dashboard and animated states | Add final cinematic polish and screenshot pass. |
 | Usefulness | Raw notes become summary, insights, actions, roadmap | Use a strong real-world demo example. |
 | Impact | Can expand into productivity OS | Explain roadmap without overpromising. |

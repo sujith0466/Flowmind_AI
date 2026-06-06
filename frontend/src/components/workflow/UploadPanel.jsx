@@ -101,14 +101,14 @@ export default function UploadPanel({ value, onChange, onSubmit, isLoading, erro
               onChange={(e) => onChange(e.target.value)}
               onKeyDown={handleKeyDown}
               disabled={isLoading}
-              placeholder="Provide notes, a meeting transcript, or an objective to orchestrate..."
+              placeholder="Provide notes, a meeting transcript, or a goal to execute..."
               className="composer-input min-h-[80px] max-h-[400px] w-full text-[16px] leading-relaxed text-white placeholder:text-white/30 disabled:opacity-50"
             />
           </div>
 
           <div className="relative z-10 mt-4 flex items-center justify-between border-t border-white/[0.05] px-4 pb-2 pt-4">
             <div className="flex items-center gap-2">
-              <span className="badge badge-active text-[10px]">Auto Orchestrate</span>
+              <span className="badge badge-active text-[10px]">Auto Execute</span>
             </div>
 
             <div className="flex items-center gap-3">

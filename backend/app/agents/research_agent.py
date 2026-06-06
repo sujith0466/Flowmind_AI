@@ -18,12 +18,13 @@ class ResearchAgent:
     def __init__(self, ai_service: GeminiService | None = None):
         self.ai_service = ai_service or GeminiService()
 
-    def run(self, text: str) -> dict:
+    def run(self, text: str, memory_context: str = "") -> dict:
+        memory_block = f"\n\nHistorical Context (Agent Memory):\n{memory_context}" if memory_context else ""
         user_prompt = f"""
 Analyze these notes for a productivity workflow.
 
 Notes:
-{text}
+{text}{memory_block}
 """.strip()
         return self.ai_service.json_completion(
             system_prompt=RESEARCH_SYSTEM_PROMPT,

@@ -10,6 +10,7 @@ import WorkflowTimeline from '../components/workflow/WorkflowTimeline.jsx';
 import WorkflowResultsPanel from '../components/workflow/WorkflowResultsPanel.jsx';
 import AgentGrid from '../components/dashboard/AgentGrid.jsx';
 import LiveTerminal from '../components/dashboard/LiveTerminal.jsx';
+import AgentMemory from '../components/dashboard/AgentMemory.jsx';
 
 const loadingPhases = ['researching', 'planning', 'prioritizing', 'summarizing', 'structuring'];
 
@@ -19,6 +20,35 @@ export default function Dashboard() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [phase, setPhase] = useState('idle');
+  
+  const [history, setHistory] = useState([]);
+  const [isHistoryLoading, setIsHistoryLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchHistory() {
+      try {
+        if (!supabase) return;
+        const { data: sessionData } = await supabase.auth.getSession();
+        const userId = sessionData?.session?.user?.id;
+        if (!userId) return;
+
+        const { data, error } = await supabase
+          .from('workflows')
+          .select('id, title, created_at')
+          .eq('user_id', userId)
+          .order('created_at', { ascending: false });
+
+        if (!error && data) {
+          setHistory(data);
+        }
+      } catch {
+        // Silently fail history load
+      } finally {
+        setIsHistoryLoading(false);
+      }
+    }
+    fetchHistory();
+  }, []);
 
   useEffect(() => {
     if (!isLoading) return;
@@ -33,6 +63,12 @@ export default function Dashboard() {
     return () => clearInterval(timer);
   }, [isLoading]);
 
+  useEffect(() => {
+    if (window.location.search.includes('autoGen=true')) {
+      setTimeout(() => handleGenerateWorkflow(null, "Launch an AI Startup"), 1000);
+    }
+  }, []);
+
   async function handleGenerateWorkflow(e, overridePrompt = null) {
     if (e && e.preventDefault) e.preventDefault();
     const promptToUse = overridePrompt || notes;
@@ -46,7 +82,14 @@ export default function Dashboard() {
 
     try {
       const sourceText = promptToUse.trim();
-      const data = await generateWorkflow(sourceText);
+      
+      // Build lightweight memory context
+      let memoryContext = '';
+      if (history.length > 0) {
+        memoryContext = history.slice(0, 5).map(h => h.title).join(', ');
+      }
+
+      const data = await generateWorkflow(sourceText, memoryContext);
       setWorkflow(data);
       setPhase('completed');
       toast.success('Workflow generated successfully.');
@@ -67,6 +110,10 @@ export default function Dashboard() {
             
             if (dbError) {
               toast.error('Generated, but could not save to history.');
+            } else {
+              // Refresh memory after save
+              const newEntry = { id: Date.now().toString(), title: `Workflow: ${sourceText.substring(0, 30)}...` };
+              setHistory(prev => [newEntry, ...prev]);
             }
           }
         } catch {
@@ -95,13 +142,15 @@ export default function Dashboard() {
           </span>
           System Online
         </div>
-        <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">Startup Workflow Studio</h1>
+        <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">The AI Operating System</h1>
         <p className="mt-4 text-[16px] leading-relaxed text-slate-400 max-w-[600px] mx-auto sm:mx-0">
-          Transform raw notes, meeting transcripts, or vague ideas into an execution-ready roadmap. Orchestrated instantly by your dedicated AI multi-agent system.
+          Transform raw notes, meeting transcripts, or vague ideas into structured action plans. Orchestrated instantly by your dedicated AI Operating System.
         </p>
       </motion.div>
 
       <div className="mx-auto max-w-[800px] sm:mx-0 sm:max-w-none">
+        <AgentMemory history={history} isLoading={isHistoryLoading} />
+        
         <UploadPanel
           value={notes}
           onChange={setNotes}
@@ -134,7 +183,7 @@ export default function Dashboard() {
               <WorkflowTimeline phase={phase} workflow={workflow} workflowSteps={workflow?.workflow_steps || []} />
             </div>
             <div>
-              <WorkflowResultsPanel workflow={workflow} />
+              <WorkflowResultsPanel workflow={workflow} history={history} />
             </div>
           </motion.div>
         )}

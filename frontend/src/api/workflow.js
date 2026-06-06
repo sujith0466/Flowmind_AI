@@ -1,7 +1,7 @@
 import apiClient from './client.js';
 
-export async function generateWorkflow(text) {
-  const response = await apiClient.post('/api/workflow/generate', { text });
+export async function generateWorkflow(text, memoryContext = "") {
+  const response = await apiClient.post('/api/workflow/generate', { text, memory_context: memoryContext });
   const payload = response.data;
 
   if (payload?.success === false) {

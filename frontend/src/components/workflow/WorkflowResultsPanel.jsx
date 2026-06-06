@@ -4,6 +4,8 @@ import { toast } from 'sonner';
 import { fadeUp, staggerContainer } from '../../animations/variants.js';
 import PriorityBadge, { priorityForItem } from './PriorityBadge.jsx';
 import { groupWorkflowByPhase } from './executionPhases.js';
+import ExecutionIntelligence from './ExecutionIntelligence.jsx';
+import AIRecommendations from './AIRecommendations.jsx';
 
 function normalizeList(value) {
   return Array.isArray(value) ? value : [];
@@ -16,7 +18,7 @@ function getItemTitle(item, fallback) {
   return String(item || fallback);
 }
 
-export default function WorkflowResultsPanel({ workflow }) {
+export default function WorkflowResultsPanel({ workflow, history = [] }) {
   if (!workflow) return null;
 
   const insights = normalizeList(workflow.key_insights);
@@ -138,8 +140,8 @@ export default function WorkflowResultsPanel({ workflow }) {
   };
 
   return (
-    <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="relative mx-auto mt-12 w-full max-w-[800px] space-y-14">
-      <motion.div variants={fadeUp} className="absolute right-0 top-0 flex flex-col gap-2 sm:flex-row sm:items-center">
+    <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="mx-auto mt-12 w-full max-w-[800px] space-y-10 sm:space-y-14">
+      <motion.div variants={fadeUp} className="flex w-full items-center justify-end gap-3">
         <button 
           onClick={handleCopy}
           className="flex items-center gap-2 rounded-md border border-sky-200/25 bg-sky-300/10 px-3 py-1.5 text-[11px] font-medium text-slate-100 transition-colors hover:bg-sky-300/20"
@@ -156,7 +158,9 @@ export default function WorkflowResultsPanel({ workflow }) {
         </button>
       </motion.div>
 
-      <motion.div variants={fadeUp} className="border-b border-sky-200/15 pb-8 pt-12 pr-0 sm:pb-10 sm:pt-0 sm:pr-24">
+      <motion.div variants={fadeUp} className="border-b border-sky-200/15 pb-8 sm:pb-10">
+        <ExecutionIntelligence workflow={workflow} />
+        <AIRecommendations workflow={workflow} history={history} />
         <h1 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">Execution Plan</h1>
         <p className="mt-3 text-[15px] leading-relaxed text-slate-400 sm:text-[16px]">{workflow.summary || 'No summary returned.'}</p>
       </motion.div>

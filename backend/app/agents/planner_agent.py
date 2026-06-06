@@ -44,7 +44,8 @@ class PlannerAgent:
     def __init__(self, ai_service: GeminiService | None = None):
         self.ai_service = ai_service or GeminiService()
 
-    def run(self, original_text: str, research_output: dict) -> dict:
+    def run(self, original_text: str, research_output: dict, memory_context: str = "") -> dict:
+        memory_block = f"\n\nHistorical Context (Agent Memory):\n{memory_context}" if memory_context else ""
         user_prompt = f"""
 Create a structured workflow plan from the original notes and research output.
 
@@ -52,7 +53,7 @@ Original notes:
 {original_text}
 
 Research output:
-{research_output}
+{research_output}{memory_block}
 """.strip()
         return self.ai_service.json_completion(
             system_prompt=PLANNER_SYSTEM_PROMPT,
